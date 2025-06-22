@@ -15,6 +15,12 @@ public class UserDao extends BasicDao<User>{
         User user = querySingle(sql, User.class, username, password);
         return user;
     }
+//    用户注册
+    public Boolean registerUser(String username,String password){
+        String sql="insert into user(username,password) values(?,md5(?));";
+        int update = update(sql, username, password);
+        return update>0;
+    }
 
 
 }

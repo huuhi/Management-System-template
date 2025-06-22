@@ -2,6 +2,7 @@ package DAO.dao;
 
 
 import Utils.DruidPoor;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
@@ -19,9 +20,9 @@ import java.util.List;
  * 创造日期 2024/12/8
  * 说明:最基本的Dao,其他dao的父类
  */
-
+@Slf4j
 public class BasicDao<T> {
-     private final static Logger log =  LoggerFactory.getLogger(BasicDao.class);
+//     private final static Logger log =  LoggerFactory.getLogger(BasicDao.class);
      QueryRunner qr=new QueryRunner();
      //提供增删改查的基本功能
      //增删改

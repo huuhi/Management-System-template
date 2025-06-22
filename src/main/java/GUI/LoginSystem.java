@@ -174,7 +174,15 @@ public class LoginSystem extends JFrame {
             return;
         }
 //         如果没有问题，根据用户的角色跳转到不同的页面
-        JOptionPane.showMessageDialog(this, "登录成功！\n用户名: " + username, "成功", JOptionPane.INFORMATION_MESSAGE);
+//        JOptionPane.showMessageDialog(this, "登录成功！\n用户名: " + username, "成功", JOptionPane.INFORMATION_MESSAGE);
+        if(user.getRole()==0) {
+            dispose();
+            new UserManagementSystem().setVisible(true);
+        }else{
+//            说明是管理员
+            dispose();
+            new MultiModuleAdminSystem().setVisible(true);
+        }
     }
 
     private void attemptRegister() {
@@ -196,6 +204,11 @@ public class LoginSystem extends JFrame {
 
 //        TODO 进行注册
         // 这里添加实际的注册逻辑
+        Boolean success = userDao.registerUser(username, password);
+        if(!success){
+            JOptionPane.showMessageDialog(this, "未知错误，请联系管理员！", "错误", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
         JOptionPane.showMessageDialog(this, "注册成功！\n用户名: " + username, "成功", JOptionPane.INFORMATION_MESSAGE);
         
         // 清空注册表单
