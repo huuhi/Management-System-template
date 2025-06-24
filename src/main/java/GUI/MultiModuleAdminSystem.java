@@ -11,11 +11,10 @@ import java.util.List;
 
 public class MultiModuleAdminSystem extends JFrame {
 
-    private JPanel mainPanel;
+    private final JPanel mainPanel;
     private CardLayout cardLayout;
     private JPanel contentPanel;
-    private String currentModule = "users";
-    
+
     // 用户管理组件
     private UserManagementPanel userManagementPanel;
     
@@ -102,7 +101,6 @@ public class MultiModuleAdminSystem extends JFrame {
     
     private void switchToPanel(String panelName) {
         cardLayout.show(contentPanel, panelName);
-        currentModule = panelName;
     }
 
     public static void main(String[] args) {
@@ -121,17 +119,16 @@ public class MultiModuleAdminSystem extends JFrame {
     
     // 用户管理面板
     class UserManagementPanel extends JPanel {
-        private JTable userTable;
-        private DefaultTableModel tableModel;
-        private JComboBox<Integer> pageSizeComboBox;
-        private JComboBox<Integer> pageComboBox;
+        private final DefaultTableModel tableModel;
+        private final JComboBox<Integer> pageSizeComboBox;
+        private final JComboBox<Integer> pageComboBox;
         private List<User> userData;
         private List<User> filteredData;
         private int currentPage = 1;
         private int pageSize = 10;
         private int totalPages = 1;
-        private JLabel statusLabel;
-        private JTextField searchField;
+        private final JLabel statusLabel;
+        private final JTextField searchField;
 
         public UserManagementPanel() {
             setLayout(new BorderLayout(10, 10));
@@ -184,8 +181,8 @@ public class MultiModuleAdminSystem extends JFrame {
                     return column == 5; // 只有操作列可编辑
                 }
             };
-            
-            userTable = new JTable(tableModel);
+
+            JTable userTable = new JTable(tableModel);
             userTable.setRowHeight(40);
             userTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
             userTable.setFont(new Font("微软雅黑", Font.PLAIN, 14));
